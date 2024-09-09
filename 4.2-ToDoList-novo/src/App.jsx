@@ -14,11 +14,12 @@ function App() {
 
     // Local Storage
 
-  }
+  };
 
   const deleteTask = (taskId) =>{
-    setTasks(tasks.filter((tasks) => task.id !== task.Id))
-  }
+    setTasks(tasks.filter((task) => task.id !== task.Id));
+  };
+
 
   return (
     <>
