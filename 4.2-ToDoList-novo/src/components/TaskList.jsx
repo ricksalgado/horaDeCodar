@@ -1,7 +1,12 @@
 import React from "react";
 import Task from "./Task";
 
-const TaskList = ({ tasks, onDeleteTask, onToggleTaskDone }) => {
+const TaskList = ({ tasks, onDeleteTask, toggleTaskDone }) => {
+
+  if(tasks.length === 0){
+    return <p>No tasks yet</p>
+  }
+
   return (
     <ul>
       {tasks.map((task) => (
@@ -9,7 +14,7 @@ const TaskList = ({ tasks, onDeleteTask, onToggleTaskDone }) => {
           key={task.id}
           task={task}
           onDelete={() => onDeleteTask(task.id)}
-          onToggleDone={() => onToggleTaskDone(task.id)}
+          onToggleDone={() => toggleTaskDone(task.id)}
         />
       ))}
     </ul>

@@ -9,6 +9,10 @@ body{
   
 }
 
+li span{
+  cursor: pointer;
+}
+
 h1{
   color: #333;
 }

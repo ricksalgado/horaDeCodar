@@ -6,13 +6,12 @@ const Task = ({ task, onDelete, onToggleDone }) => {
       <span
         onClick={onToggleDone}
         style={{
-          textDecoration: task.done ? "line-through" : "none",
-          cursor: "pointer",
+          textDecoration: task.done ? "line-through" : "none"
         }}
       >
         {task.text}
-      </span>
-      <button onClick={onDelete}>Remover</button>
+      </span >
+      <button onClick={onDelete}>Delete</button>
     </li>
   );
 };

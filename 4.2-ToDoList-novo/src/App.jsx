@@ -4,7 +4,11 @@ import TaskInput from "./components/TaskInput";
 import TaskList from "./components/TaskList";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("tasks")) || []);
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const addTask = (task) => {
     // Id, Text, Done (false)
@@ -13,21 +17,25 @@ function App() {
 
 
     // Local Storage
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 
   };
 
   const deleteTask = (taskId) =>{
-    setTasks(tasks.filter((task) => task.id !== task.Id));
+    setTasks(tasks.filter((task) => task.id !== taskId));
   };
 
+  const toggleTaskDone = (taskId) =>{
+    setTasks(tasks.map((task) => task.id === taskId ? {...task, done: !task.done} : task))
+  };
 
   return (
     <>
       <h1>
-        To Do List
+        Rick's To Do List
       </h1>
       <TaskInput onAddTask={addTask}/>
-      <TaskList tasks={tasks} onDeleteTask={deleteTask}/>
+      <TaskList tasks={tasks} onDeleteTask={deleteTask} onToggleTaskDone={toggleTaskDone}/>
     </>
   )
 }
